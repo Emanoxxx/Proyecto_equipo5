@@ -39,7 +39,7 @@ public class App
             System.out.println("1Peticion: "+query);
             Usuarios usuario=gson.fromJson(query,Usuarios.class);
             String x=DAO.addUsuario(usuario.getName() ,usuario.getId(),usuario.getEmail(),usuario.getPass());;
-            System.out.println(x);
+            System.out.println("ejecutan");
             return x+ usuario.getName();
         });
         

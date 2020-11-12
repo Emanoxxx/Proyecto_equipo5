@@ -1,0 +1,61 @@
+*{
+    box-sizing: border-box;
+}
+.myDiv {
+    text-align: center;
+    margin-top: 300px;
+    margin-bottom: 300px;
+    margin-right: 150px;
+    margin-left: 150px;
+    border-left-width: 0px;
+    border-top-width: 0px;
+    border-bottom-width: 0px;
+    border-right-width: 0px;
+    width: 700px;
+    height: 360px;
+}
+.ventana{
+    height: 100%;
+    width: 100%;
+    background: url("/Proyecto/Equipo5/SitioWeb/assets/img/inicio-Home.jpg");
+}
+.contenedor{
+    display:flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+.caja{
+    border: 1px solid black;
+    padding: 15px;
+    width: 300px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+.animado{
+    opacity: 0;
+    transition: all 0.5s;
+}
+.mostrarArriba{
+
+    animation: mostrarArriba 1s;
+}
+@keyframes mostrarArriba{
+    0%{
+        transform: translateY(60px);
+    }
+    100%{
+        transform: translateY(0);
+    }
+}
+.mostrarAbajo{
+
+    animation: mostrarAbajo 1s;
+}
+@keyframes mostrarAbajo{
+    0%{
+        transform: translateY(0);
+    }
+    100%{
+        transform: translateY(60px);
+    }
+}
