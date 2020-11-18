@@ -8,6 +8,8 @@
     height: 50;
 }
 
+
+
 h5{
    font-size: xx-large;
    background-color: rgba(2, 2, 2, 0.555);
@@ -21,6 +23,8 @@ p{
 .centrar{
    text-align:center;
 }
+
+
 /* The side navigation menu */
 .sidebar {
    margin: 0;

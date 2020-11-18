@@ -29,15 +29,23 @@
     </nav>
    <!-- The sidebar -->
   
+  
+
    <div class="sidebar">
     <form class="form-inline my-2 my-lg-0">
     <input class="form-control mr-sm-2" type="search" placeholder="Search" >
     <button class="btn btn-outline-success my-2 my-sm-0"  type="submit">Search</button>
     </form>
-    <a class="active" href="#home">HOME</a>
+    <div id="list-example" class="list-group">
+      <a class="list-group-item list-group-item-action" href="#list-item-1">HOME</a>
+      <a class="list-group-item list-group-item-action" href="#list-item-2">MIS CUENTOS</a>
+      <a class="list-group-item list-group-item-action" href="#list-item-3">SIGUIENDO</a>
+      <a class="list-group-item list-group-item-action" href="#list-item-4">ACERCA DE</a>
+    </div>
+    <!--<a class="active" href="#home">HOME</a>
     <a href="#news">MIS CUENTOS</a>
     <a href="#contact">SIGUIENDO</a>
-    <a href="#about">ACERCA DE</a>
+    <a href="#about">ACERCA DE</a>-->
   </div>
   <div class="content" style="
   margin-top: 56px;">
@@ -125,16 +133,26 @@
   
   <img src="img/Tux.png" alt="foto de perfil" width="40px" class="rounded-circle"> <h3>Daniel</h3>
 </a> 
+
 <div class="dropdown">
-  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+  <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
     Opciones
-  </button>
-  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-    <a class="dropdown-item" href="#">Subir cuento</a>
-    <a class="dropdown-item" href="#">Borrar cuento</a>
-    <a class="dropdown-item" href="#">Editar perfil</a>
+  </a>
+
+  <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+    <a class="dropdown-item" href="#">EDITAR PERFIL</a>
+    <a class="dropdown-item" href="#">EDITAR CUENTO</a>
+    <a class="dropdown-item" href="#">ELIMINAR CUENTO</a>
   </div>
 </div>
+
+<!--Contenido-->
+
+<div data-spy="scroll" data-target="#list-example" data-offset="0" class="scrollspy-example">
+
+
+<!--Fin Contenido-->
+
 <!--Carrusel-->
 
 <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
@@ -173,7 +191,7 @@
 <!--fin Carrusel-->
 
 <!--Mis cuentos-->
-<h3>MIS CUENTOS</h3>
+<h4 id="list-item-2">MIS CUENTOS</h4>
 <div class="list-group">
   <a href="#" class="list-group-item list-group-item-action active">
     Lista de Cuentos
@@ -181,14 +199,12 @@
   <a href="#" class="list-group-item list-group-item-action">El libro de la selva</a>
   <a href="#" class="list-group-item list-group-item-action">La biblioteca</a>
   <a href="#" class="list-group-item list-group-item-action">Los niños en un cuento de hadas</a>
-  <a href="#" class="list-group-item list-group-item-action disabled" tabindex="-1" aria-disabled="true">Vestibulum at eros</a>
 </div>
 <!--Mis cuentos-->
 
 
 <!--Suscripciones-->
-<h3></h3> 
-<h3>SIGUIENDO</h3>
+<h4 id="list-item-3">SIGUIENDO</h4>
 <ul class="list-group">
   <a href="#" class="list-group-item list-group-item-action active">
     Suscripciones
@@ -210,7 +226,7 @@
 
 
 <!--Informacion de usuario-->
-<h3>ACERCA DE</h3>
+<h4 id="list-item-4">ACERCA DE</h4>
 <div class="accordion" id="accordionExample">
   <div class="card">
     <div class="card-header" id="headingOne">
@@ -242,7 +258,10 @@
     </div>
   </div>
 </div>
+</div>
 <!--Fin informacion de usuario-->
+
+
 
 <!-- Contenido de la pagina -->
   </div>
