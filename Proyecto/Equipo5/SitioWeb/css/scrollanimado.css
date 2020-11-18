@@ -31,9 +31,25 @@
     margin-top: 20px;
     margin-bottom: 20px;
 }
+.apagado{
+    opacity: 0;
+    width: 0;
+    height: 0;
+    margin-left: 0px;
+    padding-top: 0px;
+    padding-bottom: 0px;
+    padding-right: 0px;
+    padding-left: 0px;
+    border-left-width: 0px;
+    border-bottom-width: 0px;
+    border-right-width: 0px;
+    border-top-width: 0px;
+
+}
 .animado{
     opacity: 0;
     transition: all 0.5s;
+
 }
 .mostrarArriba{
 

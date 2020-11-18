@@ -24,8 +24,7 @@ bLogeo.addEventListener('click',function(){
     usuario : document.getElementById("NusuarioSI").value,
     pass : document.getElementById("PasswordSI").value
     })
-    .then(function(response) {
-        
+    .then(function(response) {   
         document.getElementById("User").innerHTML = response.data;
     })
     .catch(function(error) {

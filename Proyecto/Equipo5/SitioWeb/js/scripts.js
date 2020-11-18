@@ -1,5 +1,5 @@
 var Inicio= document.getElementById("InicioA");
-var Novedades= document.getElementById("NovedadesA");
+var Mas_vistos= document.getElementById("Mas vistosA");
 var Contacto= document.getElementById("ContactoA");
 var Acerca= document.getElementById("Acerca deA");
 
@@ -12,25 +12,25 @@ function mostrarScroll(){
             animado[i].style.opacity=1;
             if((animado[i].id+"A")==(Inicio.id)){
                 Inicio.classList.add("active");
-                Novedades.classList.remove("active");
+                Mas_vistos.classList.remove("active");
                 Contacto.classList.remove("active");
                 Acerca.classList.remove("active");
             }else{
-                if((animado[i].id+"A")==(Novedades.id)){
+                if((animado[i].id+"A")==(Mas_vistos.id)){
                     Inicio.classList.remove("active");
-                    Novedades.classList.add("active");
+                    Mas_vistos.classList.add("active");
                     Contacto.classList.remove("active");
                     Acerca.classList.remove("active");
                 }else{
                     if((animado[i].id+"A")==(Contacto.id)){
                         Inicio.classList.remove("active");
-                        Novedades.classList.remove("active");
+                        Mas_vistos.classList.remove("active");
                         Contacto.classList.add("active");
                         Acerca.classList.remove("active");
                     }else{
                         if((animado[i].id+"A")==(Acerca.id)){
                             Inicio.classList.remove("active");
-                            Novedades.classList.remove("active");
+                            Mas_vistos.classList.remove("active");
                             Contacto.classList.remove("active");
                             Acerca.classList.add("active");
                         }
