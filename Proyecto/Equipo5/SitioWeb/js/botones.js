@@ -36,14 +36,22 @@ Acerca.addEventListener('click',function(){
 });
 
 bLogeo.addEventListener('click',function(){
-    console.log('apagando jejejeujejejejjwejejejje');
-    blogin.classList.add("apagado");
-    breg.classList.add("apagado");
-    aUser.classList.remove("apagado");
+    var n = document.getElementById("NusuarioSI").value;
+    if(n!=""){
+        if(true){
+            //console.log(aUser.innerHTML);
+            blogin.classList.add("apagado");
+            breg.classList.add("apagado");
+            aUser.classList.remove("apagado");
+            aUser.href=aUser.href + aUser.innerHTML;
+        }
+    
+    }
 });
 bRegistro.addEventListener('click',function(){
     blogin.classList.add("apagado");
     breg.classList.add("apagado");
     aUser.classList.remove("apagado");
+    aUser.href=aUser.href + aUser.innerHTML;
 });
     
