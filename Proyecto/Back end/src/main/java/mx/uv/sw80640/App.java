@@ -56,11 +56,10 @@ public class App
         before((request, response) -> response.header("Access-Control-Allow-Origin", "*"));
         post("/singUp",(req,res)->{
             String query = req.body();
-            System.out.println("1Peticion: "+query);
             Usuarios usuario=gson.fromJson(query,Usuarios.class);
             String x=DAO.addUsuario(usuario.getName() ,usuario.getId(),usuario.getEmail(),usuario.getPass());;
-            System.out.println("ejecutan");
-            return x+ usuario.getName();
+            System.out.println("Regresando "+usuario.getId());
+            return usuario.getId();
         });
         
         post("/logg", (req, res) ->{

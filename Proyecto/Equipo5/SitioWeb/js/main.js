@@ -52,7 +52,7 @@ bLogeo.addEventListener('click',function(){
     pass : getCookie("Pass")
     })
     .then(function(response) {   
-        document.getElementById("User").innerHTML = response.data;
+        document.getElementById(getCookie("Usuario")).innerHTML = response.data;
     })
     .catch(function(error) {
         console.log(error)
@@ -61,6 +61,8 @@ bLogeo.addEventListener('click',function(){
     });
 //
 bRegistro.addEventListener('click',function(){
+    setCookie("Usuario",document.getElementById("inputIDSUP").value ,0);
+    setCookie("Pass",document.getElementById("inputpassSUP").value ,0);
     axios.post("http://192.168.100.4:2022/singUp",{
     nombre: document.getElementById("inputNuserSUP").value,
     email: document.getElementById("inputemailSUP").value,
@@ -68,7 +70,7 @@ bRegistro.addEventListener('click',function(){
     pass: document.getElementById("inputpassSUP").value
     })
     .then(function(response) {
-        document.getElementById("User").innerHTML = response.data;
+        document.getElementById(getCookie("Usuario")).innerHTML = response.data;
     })
     .catch(function(error) {
         console.log(error)
