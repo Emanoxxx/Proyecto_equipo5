@@ -71,7 +71,10 @@ public class App
             String psw= ""+peticion.get("pass");
             String user= ""+peticion.get("usuario");
             System.out.println(user);
-            return ""+user+"";
+            if(validar(user, psw)){
+                return ""+user+"";
+            }
+            return "";
             }catch(Exception e){
                    return e.getMessage();
             }
@@ -79,6 +82,12 @@ public class App
         });
         
         
+}
+public static boolean validar(String nombre, String pass){
+    if(DAO.getvalidar(nombre, pass)){
+        return true;
+    };
+    return false;
 }
 public static Map<String,String> getNombre(String nombre){
     Map<String, String> map = new HashMap<>();

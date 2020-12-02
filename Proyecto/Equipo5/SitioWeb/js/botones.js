@@ -38,8 +38,8 @@ Acerca.addEventListener('click',function(){
 
 bLogeo.addEventListener('click',function(){
     var n = document.getElementById("NusuarioSI").value;
-    if(n!=""){
-        if(true){
+    if(n!="" ){
+        if(getCookie("Grant")!="Denegado"){
             //console.log(aUser.innerHTML);
             blogin.classList.add("apagado");
             breg.classList.add("apagado");
@@ -47,6 +47,12 @@ bLogeo.addEventListener('click',function(){
             cuser.classList.remove("apagado");
             euser.classList.remove("apagado");
             aUser.href=aUser.href + aUser.innerHTML;
+        }else{
+            blogin.classList.remove("apagado");
+        breg.classList.remove("apagado");
+        aUser.classList.add("apagado");
+        cuser.classList.add("apagado");
+        euser.classList.add("apagado");
         }
     
     }
@@ -62,6 +68,12 @@ bRegistro.addEventListener('click',function(){
             cuser.classList.remove("apagado");
             euser.classList.remove("apagado");
             aUser.href=aUser.href + aUser.innerHTML;
+        }else{
+        blogin.classList.remove("apagado");
+        breg.classList.remove("apagado");
+        aUser.classList.add("apagado");
+        cuser.classList.add("apagado");
+        euser.classList.add("apagado");
         }
     
     }

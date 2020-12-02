@@ -13,7 +13,7 @@ var euser =document.getElementById("editar");
     var aUser= document.getElementById('User');
     aUser.innerHTML=getCookie('Usuario');
     var n = getCookie('Usuario');
-    if(n!=""){
+    if(n!="" & getCookie("Grant")!="Denegado"){
         if(true){
             //console.log(aUser.innerHTML);
             blogin.classList.add("apagado");
@@ -25,6 +25,9 @@ var euser =document.getElementById("editar");
         }
     
     }else{
+        delCookie("Usuario");
+        delCookie("Pass");
+        delCookie("Grant");
         blogin.classList.remove("apagado");
         breg.classList.remove("apagado");
         aUser.classList.add("apagado");
@@ -43,7 +46,11 @@ bLogeo.addEventListener('click',function(){
     pass : getCookie("Pass")
     })
     .then(function(response) {   
-        document.getElementById(getCookie("Usuario")).innerHTML = response.data;
+        if(response.data!=""){
+            setCookie("Grant","Acceso",0);
+        }else{
+            setCookie("Grant","Denegado",0);
+        }
     })
     .catch(function(error) {
         console.log(error)
@@ -71,6 +78,7 @@ bRegistro.addEventListener('click',function(){
 cuser.addEventListener('click',function(){  
     delCookie("Usuario");
     delCookie("Pass");
+    delCookie("Grant");
     blogin.classList.remove("apagado");
     breg.classList.remove("apagado");
     aUser.classList.add("apagado");

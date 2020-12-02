@@ -6,6 +6,9 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.*;
+
+import javax.swing.text.StyledEditorKit.BoldAction;
+
 import java.sql.*;
 
 public class DAO {
@@ -105,6 +108,61 @@ public class DAO {
         
         Cuento c=new Cuento(nombre,user,contenido);
         return c;
+    }
+    public static boolean getvalidar(String n, String c) {
+        
+        String x="No creado";
+        java.sql.Statement stm = null;
+        Connection con=null;
+        ResultSet rs =null;
+        List<Usuarios> resultado =new ArrayList<>();
+        String contenido="";
+        con = conn.getConexion();
+        try {
+
+            String sql="Select * from Usuario where id="+n+" and pass="+c+"";
+            stm=con.createStatement();
+            rs=stm.executeQuery(sql);
+           
+           int i=0;
+            while(rs.next()){
+                i++;
+                contenido= rs.getString("id");
+            }
+           System.out.println(sql+" ,Llegue "+contenido);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }finally{
+            if(rs!=null){
+                try {
+                    rs.close();
+                } catch (Exception e) {
+                    //TODO: handle exception
+                }
+                rs=null;
+            }
+            if(stm!=null){
+                try {
+                    stm.close();
+                } catch (Exception e) {
+                    //TODO: handle exception
+                }
+                stm=null;
+            }
+            if(con!=null){
+                try {
+                    con.close();
+                } catch (Exception e) {
+                    //TODO: handle exception
+                }
+                con=null;
+                System.out.println("Conexion cerrada");
+            }
+        }
+        if(contenido!=""){
+            return true;
+        }
+        return false;
     }
     //
     
