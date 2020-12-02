@@ -53,4 +53,59 @@ public class DAO {
         }
         return x;
     }
+    //
+    public static Cuento getCuento(String nombre,String user){
+        String x="No creado";
+        java.sql.Statement stm = null;
+        Connection con=null;
+        ResultSet rs =null;
+        List<Usuarios> resultado =new ArrayList<>();
+        String contenido="No se encontro o hubo un error.";
+        con = conn.getConexion();
+        try {
+            String sql="Select contenido from Cuento where nombre='"+nombre+"'and usuario='"+user+"'";
+            stm=con.createStatement();
+            rs=stm.executeQuery(sql);
+           
+           int i=0;
+            while(rs.next()){
+                i++;
+                contenido= rs.getString("contenido");
+            }
+           System.out.println("LLegue fokiu");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }finally{
+            if(rs!=null){
+                try {
+                    rs.close();
+                } catch (Exception e) {
+                    //TODO: handle exception
+                }
+                rs=null;
+            }
+            if(stm!=null){
+                try {
+                    stm.close();
+                } catch (Exception e) {
+                    //TODO: handle exception
+                }
+                stm=null;
+            }
+            if(con!=null){
+                try {
+                    con.close();
+                } catch (Exception e) {
+                    //TODO: handle exception
+                }
+                con=null;
+                System.out.println("Conexion cerrada");
+            }
+        }
+        
+        Cuento c=new Cuento(nombre,user,contenido);
+        return c;
+    }
+    //
+    
 }

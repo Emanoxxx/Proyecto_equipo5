@@ -35,6 +35,7 @@ public class App
     {   
         port(2022);
         get("/UserPage", (rq, rs) -> new ModelAndView(getNombre(""+rq.queryParams("U")), "UserPage"), new JadeTemplateEngine());
+        get("/ReadPage", (rq, rs) -> new ModelAndView(getCuentoc(""+rq.queryParams("U"),""+rq.queryParams("N")), "ReadPage"), new JadeTemplateEngine());
         /*get("/UserPage",(request,response)->{
             String user= ""+request.queryParams("Nuser");
             return "Hola "+user+" tu pass es: "+"\n";
@@ -82,6 +83,14 @@ public class App
 public static Map<String,String> getNombre(String nombre){
     Map<String, String> map = new HashMap<>();
     map.put("Nombre", nombre);
+    return map;
+}
+public static Map<String, String> getCuentoc(String user,String nombre){
+    Map<String, String> map = new HashMap<>();
+    Cuento cuento =DAO.getCuento(nombre, user);
+    map.put("Nombre", nombre);
+    map.put("Usuario", user);
+    map.put("Contenido",cuento.getContent());
     return map;
 }
 }

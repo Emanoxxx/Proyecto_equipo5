@@ -1,31 +1,13 @@
 
 var bLogeo = document.getElementById("logSI");
 var bRegistro = document.getElementById("regSU");
+var cuser =document.getElementById("cerrarU");
+var euser =document.getElementById("editar");
 ///
 /*
-axios.post("http://192.168.100.4:2022/logg",{
-    usuario : getCookie("nombre"),
-    pass : getCookie("Pass")
-    })
-    .then(function(response) {
-        if(false){
-        var blogin= document.getElementById('acceso');
-        var aUser= document.getElementById('User');
-        var breg= document.getElementById('registro');
-        blogin.classList.add("apagado");
-        breg.classList.add("apagado");
-        aUser.classList.remove("apagado");
-        }
-        console.log("LLegando a refresfo");
-        var respuesta =response.data;
-            
-            document.getElementById("User").innerHTML = response.data;
-        
-        
-    })
-    .catch(function(error) {
-        console.log(error)
-    }); */
+<a class="apagado" id="cerrarU" href="#">Cerrar Sesion</a>
+<a class="apagado" id="editar" href="#">Editar perfil</a>
+*/
     var blogin= document.getElementById('acceso');
     var breg= document.getElementById('registro');
     var aUser= document.getElementById('User');
@@ -37,9 +19,18 @@ axios.post("http://192.168.100.4:2022/logg",{
             blogin.classList.add("apagado");
             breg.classList.add("apagado");
             aUser.classList.remove("apagado");
+            cuser.classList.remove("apagado");
+            euser.classList.remove("apagado");
             aUser.href=aUser.href + aUser.innerHTML;
         }
     
+    }else{
+        blogin.classList.remove("apagado");
+        breg.classList.remove("apagado");
+        aUser.classList.add("apagado");
+        cuser.classList.add("apagado");
+        euser.classList.add("apagado");
+
     }
 //
 bLogeo.addEventListener('click',function(){
@@ -76,7 +67,24 @@ bRegistro.addEventListener('click',function(){
         console.log(error)
     });  
      
-    });          
+    });    
+cuser.addEventListener('click',function(){  
+    delCookie("Usuario");
+    delCookie("Pass");
+    blogin.classList.remove("apagado");
+    breg.classList.remove("apagado");
+    aUser.classList.add("apagado");
+    cuser.classList.add("apagado");
+    euser.classList.add("apagado");
+});   
+function delCookie(nombre){
+    valor="";
+    expiracion="";
+    var d = new Date();
+    d.setTime(d.getTime()+expiracion*24*60*60*1000);
+    var expira = "expieres="+d.toUTCString();
+    document.cookie = nombre+ "=" + valor +";" + expira +";path=/";
+}      
 function setCookie(nombre, valor, expiracion){
     var d = new Date();
     d.setTime(d.getTime()+expiracion*24*60*60*1000);

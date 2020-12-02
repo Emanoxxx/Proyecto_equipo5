@@ -8,7 +8,8 @@ var bRegistro = document.getElementById("regSU");
     var blogin= document.getElementById('acceso');
     var aUser= document.getElementById('User');
     var breg= document.getElementById('registro');
-
+    var cuser =document.getElementById("cerrarU");
+    var euser =document.getElementById("editar");
 
 Inicio.addEventListener('click',function(){
     Inicio.classList.add("active");
@@ -43,15 +44,26 @@ bLogeo.addEventListener('click',function(){
             blogin.classList.add("apagado");
             breg.classList.add("apagado");
             aUser.classList.remove("apagado");
+            cuser.classList.remove("apagado");
+            euser.classList.remove("apagado");
             aUser.href=aUser.href + aUser.innerHTML;
         }
     
     }
 });
 bRegistro.addEventListener('click',function(){
-    blogin.classList.add("apagado");
-    breg.classList.add("apagado");
-    aUser.classList.remove("apagado");
-    aUser.href=aUser.href + aUser.innerHTML;
+    var n = document.getElementById("inputIDSUP").value;
+    if(n!=""){
+        if(true){
+            //console.log(aUser.innerHTML);
+            blogin.classList.add("apagado");
+            breg.classList.add("apagado");
+            aUser.classList.remove("apagado");
+            cuser.classList.remove("apagado");
+            euser.classList.remove("apagado");
+            aUser.href=aUser.href + aUser.innerHTML;
+        }
+    
+    }
 });
     
