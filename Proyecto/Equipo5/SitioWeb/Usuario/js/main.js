@@ -2,7 +2,6 @@
 var bLogeo = document.getElementById("logSI");
 var bRegistro = document.getElementById("regSU");
 var cuser =document.getElementById("cerrarU");
-var euser =document.getElementById("editar");
 ///
 /*
 <a class="apagado" id="cerrarU" href="#">Cerrar Sesion</a>
@@ -20,7 +19,6 @@ var euser =document.getElementById("editar");
             breg.classList.add("apagado");
             aUser.classList.remove("apagado");
             cuser.classList.remove("apagado");
-            euser.classList.remove("apagado");
             aUser.href=aUser.href + aUser.innerHTML;
         }
     
@@ -32,7 +30,7 @@ var euser =document.getElementById("editar");
         breg.classList.remove("apagado");
         aUser.classList.add("apagado");
         cuser.classList.add("apagado");
-        euser.classList.add("apagado");
+
 
     }
 //
@@ -47,6 +45,10 @@ bLogeo.addEventListener('click',function(){
     })
     .then(function(response) {   
         if(response.data!=""){
+            blogin.classList.add("apagado");
+            breg.classList.add("apagado");
+            aUser.classList.remove("apagado");
+            cuser.classList.remove("apagado");
             setCookie("Grant","Acceso",0);
             aUser.classList.remove("apagado");
         }else{
@@ -58,7 +60,7 @@ bLogeo.addEventListener('click',function(){
         breg.classList.remove("apagado");
         aUser.classList.add("apagado");
         cuser.classList.add("apagado");
-        euser.classList.add("apagado");
+
         }
     })
     .catch(function(error) {
@@ -92,7 +94,6 @@ cuser.addEventListener('click',function(){
     breg.classList.remove("apagado");
     aUser.classList.add("apagado");
     cuser.classList.add("apagado");
-    euser.classList.add("apagado");
 });   
 function delCookie(nombre){
     valor="";

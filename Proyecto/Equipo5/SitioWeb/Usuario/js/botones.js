@@ -1,7 +1,6 @@
-var Inicio= document.getElementById("InicioA");
-var Mas_vistos= document.getElementById("Mas vistosA");
-var Contacto= document.getElementById("ContactoA");
-var Acerca= document.getElementById("Acerca deA");
+var a1= document.getElementById("v1A");
+var a2= document.getElementById("v2A");
+var a3= document.getElementById("v3A");
 
 var bLogeo = document.getElementById("logSI");
 var bRegistro = document.getElementById("regSU");
@@ -11,30 +10,22 @@ var bRegistro = document.getElementById("regSU");
     var cuser =document.getElementById("cerrarU");
     var euser =document.getElementById("editar");
 
-Inicio.addEventListener('click',function(){
-    Inicio.classList.add("active");
-    Mas_vistos.classList.remove("active");
-    Contacto.classList.remove("active");
-    Acerca.classList.remove("active");
+a1.addEventListener('click',function(){
+    a1.classList.add("active");
+    a2.classList.remove("active");
+    a3.classList.remove("active");
 });
-Mas_vistos.addEventListener('click',function(){
-    Inicio.classList.remove("active");
-    Mas_vistos.classList.add("active");
-    Contacto.classList.remove("active");
-    Acerca.classList.remove("active");
+a2.addEventListener('click',function(){
+    a1.classList.remove("active");
+    a2.classList.add("active");
+    a3.classList.remove("active");
 });
-Contacto.addEventListener('click',function(){
-    Inicio.classList.remove("active");
-    Mas_vistos.classList.remove("active");
-    Contacto.classList.add("active");
-    Acerca.classList.remove("active");
+a3.addEventListener('click',function(){
+    a1.classList.remove("active");
+    a2.classList.remove("active");
+    a3.classList.add("active");
 });
-Acerca.addEventListener('click',function(){
-    Inicio.classList.remove("active");
-    Mas_vistos.classList.remove("active");
-    Contacto.classList.remove("active");
-    Acerca.classList.add("active");
-});
+
 
 bLogeo.addEventListener('click',function(){
     var n = document.getElementById("NusuarioSI").value;

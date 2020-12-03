@@ -62,7 +62,13 @@ public class App
             System.out.println("Regresando "+usuario.getId());
             return usuario.getId();
         });
-        
+        post("/NCuentos",(req,res)->{
+            JsonParser parser = new JsonParser();
+            JsonElement arbol = parser.parse(req.body());
+            JsonObject peticion =arbol.getAsJsonObject();
+            String u= ""+peticion.get("Username");
+            return DAO.getNCuentos(u);
+        });
         post("/logg", (req, res) ->{
             try{
             JsonParser parser = new JsonParser();
