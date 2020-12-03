@@ -2,16 +2,28 @@
 var bLogeo = document.getElementById("logSI");
 var bRegistro = document.getElementById("regSU");
 var cuser =document.getElementById("cerrarU");
+var numeroCuentos =document.getElementById("NCuentos");
 ///
 /*
-<a class="apagado" id="cerrarU" href="#">Cerrar Sesion</a>
+<a class="apagado" id="cerrarU" href="#">Cerrar Sesion</a>paginavista
 <a class="apagado" id="editar" href="#">Editar perfil</a>
 */
+    var pvista =document.getElementById("paginavista");
     var blogin= document.getElementById('acceso');
     var breg= document.getElementById('registro');
     var aUser= document.getElementById('User');
     aUser.innerHTML=getCookie('Usuario');
     var n = getCookie('Usuario');
+    pvista.href="http://localhost:2022/UserPage?U="+getCookie('Usuario');
+    axios.post("http://192.168.100.4:2022/NCuentos",{
+    Username: getCookie('Usuario')
+    })
+    .then(function(response) {
+        numeroCuentos.innerHTML = response.data;
+    })
+    .catch(function(error) {
+        console.log(error)
+    }); 
     if(n!="" & getCookie("Grant")!="Denegado"){
         if(true){
             //console.log(aUser.innerHTML);
@@ -33,6 +45,26 @@ var cuser =document.getElementById("cerrarU");
 
 
     }
+//
+var CuentoNombre = document.getElementById('nombreCuento').value;
+var CuentoGenero = document.getElementById('EleccionGenero').value;
+var CuentoContenido = document.getElementById('contenidoCuento').value;
+var addCuento= document.getElementById('addCuento');
+addCuento.addEventListener('click',function(){
+    axios.post("http://192.168.100.4:2022/AddCuento",{
+    nombre : CuentoNombre, 
+    user: getCookie("Usuario"),
+    contenido: document.getElementById('contenidoCuento').value,
+    genero: document.getElementById('EleccionGenero').value
+    })
+    .then(function(response) {   
+        
+    })
+    .catch(function(error) {
+        console.log(error)
+    });  
+     
+    });
 //
 bLogeo.addEventListener('click',function(){
     setCookie("Usuario",document.getElementById("NusuarioSI").value ,0);
@@ -69,6 +101,8 @@ bLogeo.addEventListener('click',function(){
      
     });
 //
+//
+
 bRegistro.addEventListener('click',function(){
     setCookie("Usuario",document.getElementById("inputIDSUP").value ,0);
     setCookie("Pass",document.getElementById("inputpassSUP").value ,0);

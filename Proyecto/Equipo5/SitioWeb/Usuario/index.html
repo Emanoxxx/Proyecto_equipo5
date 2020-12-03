@@ -147,26 +147,11 @@
     <p style="font-size: 40px; font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman'; background-color: #0565b4;" >
       Datos personales
     </p>
-    <form>
-      <div class="form-group">
-        <label for="nombreNuevo">Nombre</label>
-        <input class="form-control" id="NombreNuevo" rows="1">
-      </div>
-      <div class="form-group">
-        <label for="UsernameNuevo">Username</label>
-        <input class="form-control" id="UsernameNuevo" >
-      </div>
-      <div class="form-group">
-        <label for="EmailNuevo">Email address</label>
-        <input type="email" class="form-control" id="EmailNuevo" aria-describedby="emailHelp">
-      </div>
-      <div class="form-group">
-        <label for="PasswordNuevo">Password</label>
-        <input type="password" class="form-control" id="PasswordNuevo">
-      </div>
-      
-      <button id="Actualizar" type="submit" class="btn btn-primary">Actualizar datos</button>
-    </form>
+    <input id="nNombre" type="text" placeholder="Nombre">
+    <input id="nUser" type="text" placeholder="Username">
+    <input id="nPass" type="text" placeholder="Password">
+    <input id="nemail" type="text" placeholder="email">
+    <button id="Actualizar">Actualizar</button>
 
   </div>
 </div>
@@ -191,7 +176,7 @@
       <p id="NCuentos" class="lead">0</p>
       <hr class="my-4">
       <p>Ve tu pagina aqui</p>
-      <a class="btn btn-primary btn-lg" href="#" role="button">Ir a pagina</a>
+      <a id="paginavista" class="btn btn-primary btn-lg" href="http://localhost:2022/UserPage?U=emanoxxx" role="button">Ir a pagina</a>
     </div>
 
     <!---->
@@ -216,8 +201,55 @@
       <p class="lead">Sube aqui tus nuevos cuentos</p>
       <hr class="my-4">
       <p>Inicia aqui</p>
-      <a class="btn btn-primary btn-lg" href="#" role="button">Ir a pagina</a>
+      <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#VentanaA">
+        Ir a la pagina
+      </button>
     </div>
+
+    <!---->
+    <!-- Button trigger modal -->
+        
+
+        <!-- Modal -->
+        <div class="modal fade" id="VentanaA" tabindex="-1" aria-labelledby="VentanaALabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h4 class="title" id="VentanaALabel">Escribe tu cuento</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <form>
+                  <div class="form-group">
+                    <label for="nombreCuento">Titulo</label>
+                    <input  class="form-control" id="nombreCuento" >
+                  </div>
+                  <div class="form-group">
+                    <label for="EleccionGenero">Que Genero es?</label>
+                    <select class="form-control" id="EleccionGenero">
+                      <option>Fantasia</option>
+                      <option>Terror</option>
+                      <option>Comedia</option>
+                      <option>Historico</option>
+                      <option>Infantil</option>
+                    </select>
+                  </div>
+                  <div class="form-group">
+                    <label for="exampleFormControlTextarea1">Contenido</label>
+                    <textarea class="form-control" id="contenidoCuento" rows="20"></textarea>
+                  </div>
+                </form> 
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                <button id="addCuento" type="button" class="btn btn-primary">Subir cuento</button>
+              </div>
+            </div>
+          </div>
+        </div>
+    <!---->
   </div>
 </div>
 

@@ -25,8 +25,24 @@ a3.addEventListener('click',function(){
     a2.classList.remove("active");
     a3.classList.add("active");
 });
-
-
+var actUser =document.getElementById("Actualizar");
+actUser.addEventListener('click',function(){
+    console.log("LLEGUE A UPDATE");
+    axios.post("http://192.168.100.4:2022/UpdUser",{
+    id : getCookie("Usuario"),
+    nombre : document.getElementById("nNombre").value, 
+    email: document.getElementById("nemail").value,
+    newid: document.getElementById("nUser").value,
+    pass: document.getElementById("nPass").value
+    })
+    .then(function(response) {   
+        setCookie("Usuario",response.data ,0);
+    })
+    .catch(function(error) {
+        console.log(error)
+    });  
+     
+    });
 bLogeo.addEventListener('click',function(){
     var n = document.getElementById("NusuarioSI").value;
     if(n!="" & getCookie("Grant")!="Denegado" ){

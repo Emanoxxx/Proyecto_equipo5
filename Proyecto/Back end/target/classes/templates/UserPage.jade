@@ -24,7 +24,18 @@ html(lang='en')
     form.form-inline.my-2.my-lg-0
       // inicio de sesion
       a#User.apagado(href='') #{Nombre}
-      
+  body
+    ol #{Cuentos}
+      for Cuento in Cuentos
+          .card(style='margin-top: 30px;')
+            //img.card-img-top(src='...' alt='...')
+            .card-body
+              h5.card-title #{Cuento.nombre}
+              p.card-text
+                | #{Cuento.usuario}
+              a.btn.btn-primary(href='http://localhost:2022/ReadPage?U=#{Cuento.usuario}&N=#{Cuento.nombre}') Leer
+  
+    
 
 
    

@@ -34,7 +34,7 @@ public class App
     public static void main( String[] args )
     {   
         port(2022);
-        get("/UserPage", (rq, rs) -> new ModelAndView(getNombre(""+rq.queryParams("U")), "UserPage"), new JadeTemplateEngine());
+        get("/UserPage", (rq, rs) -> new ModelAndView(getCuentosUser(""+rq.queryParams("U")), "UserPage"), new JadeTemplateEngine());
         get("/ReadPage", (rq, rs) -> new ModelAndView(getCuentoc(""+rq.queryParams("U"),""+rq.queryParams("N")), "ReadPage"), new JadeTemplateEngine());
         /*get("/UserPage",(request,response)->{
             String user= ""+request.queryParams("Nuser");
@@ -63,12 +63,78 @@ public class App
             return usuario.getId();
         });
         post("/NCuentos",(req,res)->{
+            try{
             JsonParser parser = new JsonParser();
             JsonElement arbol = parser.parse(req.body());
             JsonObject peticion =arbol.getAsJsonObject();
             String u= ""+peticion.get("Username");
+            System.out.println(u);
             return DAO.getNCuentos(u);
+            }catch(Exception e){
+                return e.getMessage();
+            }
         });
+        post("/AddCuento",(req,res)->{
+            try{
+            JsonParser parser = new JsonParser();
+            JsonElement arbol = parser.parse(req.body());
+            JsonObject peticion =arbol.getAsJsonObject();
+            String n= ""+peticion.get("nombre");
+            String u= ""+peticion.get("user");
+            String c= ""+peticion.get("contenido");
+            String g= ""+peticion.get("genero");
+            System.out.println(u);
+            return DAO.agregarCuento(n,u,c,g);
+            }catch(Exception e){
+                return e.getMessage();
+            }
+        });
+        post("/UpdUser",(req,res)->{
+            String r="";
+            try{
+            JsonParser parser = new JsonParser();
+            JsonElement arbol = parser.parse(req.body());
+            JsonObject peticion =arbol.getAsJsonObject();
+            String id= ""+peticion.get("id");
+            
+            r=id;
+            
+            String n= ""+peticion.get("nombre");
+            String e= ""+peticion.get("email");
+            String i= ""+peticion.get("newid");
+            String p= ""+peticion.get("pass");
+            String x=""+(char)34+(char)34;
+            System.out.println(x+ "   "+n);
+            
+            if(!x.equals(n)){
+                
+                DAO.updateUnombre(n, id);
+            }
+            if(!x.equals(e)){
+                DAO.updateUemail(e, id);
+            }
+            if(!x.equals(i)){
+                DAO.updateUid(i, id);
+                r=i;
+                id=i;
+            }
+            if(!x.equals(p)){
+                DAO.updateUpass(p, id);
+            }
+        }catch(Exception e){
+            return e.getMessage();
+     }
+       return r;
+ });
+
+        /*
+        id: getCookie("Usuario"),
+        nombre: NombreNuevo,
+        email: EmailNuevo,
+        newid: UsernameNuevo,
+        pass: PasswordNuevo
+        */
+
         post("/logg", (req, res) ->{
             try{
             JsonParser parser = new JsonParser();
@@ -95,9 +161,16 @@ public static boolean validar(String nombre, String pass){
     };
     return false;
 }
-public static Map<String,String> getNombre(String nombre){
-    Map<String, String> map = new HashMap<>();
+public static Map<String,Object> getCuentosUser(String nombre){
+    Map<String, Object> map = new HashMap<>();
+    //List<Cuento> cuentos = new ArrayList<Cuento>();
     map.put("Nombre", nombre);
+    //cuentos.add(new Cuento("El dragón de Wawel",nombre));
+    //cuentos.add(new Cuento("El Chake",nombre));
+    //cuentos.add(new Cuento("El perro aterrado",nombre));
+    //System.out.println(cuentos.get(1).getName());
+     //map.put("Cuentos",cuentos);
+     map.put("Cuentos",DAO.getCuentos(nombre));
     return map;
 }
 public static Map<String, String> getCuentoc(String user,String nombre){
