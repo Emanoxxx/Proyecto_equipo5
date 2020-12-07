@@ -28,7 +28,7 @@ a3.addEventListener('click',function(){
 var actUser =document.getElementById("Actualizar");
 actUser.addEventListener('click',function(){
     console.log("LLEGUE A UPDATE");
-    axios.post("http://192.168.100.4:2022/UpdUser",{
+    axios.post("https://proyectobiblioteca16.herokuapp.com/UpdUser",{
     id : getCookie("Usuario"),
     nombre : document.getElementById("nNombre").value, 
     email: document.getElementById("nemail").value,

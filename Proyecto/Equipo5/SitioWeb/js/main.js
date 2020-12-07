@@ -41,7 +41,7 @@ bLogeo.addEventListener('click',function(){
     setCookie("Pass",document.getElementById("PasswordSI").value ,0);
     console.log("nombre= " +document.getElementById("NusuarioSI").value);
     console.log("Cokie= " +getCookie("Usuario"));
-    axios.post("http://192.168.100.4:2022/logg",{
+    axios.post("https://proyectobiblioteca16.herokuapp.com/logg",{
     usuario : getCookie("Usuario"),
     pass : getCookie("Pass")
     })
@@ -70,14 +70,26 @@ bLogeo.addEventListener('click',function(){
 bRegistro.addEventListener('click',function(){
     setCookie("Usuario",document.getElementById("inputIDSUP").value ,0);
     setCookie("Pass",document.getElementById("inputpassSUP").value ,0);
-    axios.post("http://192.168.100.4:2022/singUp",{
+    axios.post("https://proyectobiblioteca16.herokuapp.com/singUp",{
     nombre: document.getElementById("inputNuserSUP").value,
     email: document.getElementById("inputemailSUP").value,
     id: document.getElementById("inputIDSUP").value,
     pass: document.getElementById("inputpassSUP").value
     })
     .then(function(response) {
-        document.getElementById(getCookie("Usuario")).innerHTML = response.data;
+        if("Usuario Creado"==response.data){
+            document.getElementById('Usuario').innerHTML = getCookie("Usuario");
+        }else{
+            setCookie("Grant","Denegado",0);
+            delCookie("Usuario");
+            delCookie("Pass");
+            blogin.classList.remove("apagado");
+            breg.classList.remove("apagado");
+            aUser.classList.add("apagado");
+            cuser.classList.add("apagado");
+            euser.classList.add("apagado");
+        }
+        
     })
     .catch(function(error) {
         console.log(error)

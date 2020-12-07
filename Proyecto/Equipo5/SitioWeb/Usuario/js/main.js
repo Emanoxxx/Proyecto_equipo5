@@ -14,8 +14,8 @@ var numeroCuentos =document.getElementById("NCuentos");
     var aUser= document.getElementById('User');
     aUser.innerHTML=getCookie('Usuario');
     var n = getCookie('Usuario');
-    pvista.href="http://localhost:2022/UserPage?U="+getCookie('Usuario');
-    axios.post("http://192.168.100.4:2022/NCuentos",{
+    pvista.href="https://proyectobiblioteca16.herokuapp.com/UserPage?U="+getCookie('Usuario');
+    axios.post("https://proyectobiblioteca16.herokuapp.com/NCuentos",{
     Username: getCookie('Usuario')
     })
     .then(function(response) {
@@ -51,8 +51,8 @@ var CuentoGenero = document.getElementById('EleccionGenero').value;
 var CuentoContenido = document.getElementById('contenidoCuento').value;
 var addCuento= document.getElementById('addCuento');
 addCuento.addEventListener('click',function(){
-    axios.post("http://192.168.100.4:2022/AddCuento",{
-    nombre : CuentoNombre, 
+    axios.post("https://proyectobiblioteca16.herokuapp.com/AddCuento",{
+    nombre : document.getElementById('nombreCuento').value, 
     user: getCookie("Usuario"),
     contenido: document.getElementById('contenidoCuento').value,
     genero: document.getElementById('EleccionGenero').value
@@ -71,7 +71,7 @@ bLogeo.addEventListener('click',function(){
     setCookie("Pass",document.getElementById("PasswordSI").value ,0);
     console.log("nombre= " +document.getElementById("NusuarioSI").value);
     console.log("Cokie= " +getCookie("Usuario"));
-    axios.post("http://192.168.100.4:2022/logg",{
+    axios.post("https://proyectobiblioteca16.herokuapp.com/logg",{
     usuario : getCookie("Usuario"),
     pass : getCookie("Pass")
     })
@@ -106,7 +106,7 @@ bLogeo.addEventListener('click',function(){
 bRegistro.addEventListener('click',function(){
     setCookie("Usuario",document.getElementById("inputIDSUP").value ,0);
     setCookie("Pass",document.getElementById("inputpassSUP").value ,0);
-    axios.post("http://192.168.100.4:2022/singUp",{
+    axios.post("https://proyectobiblioteca16.herokuapp.com/singUp",{
     nombre: document.getElementById("inputNuserSUP").value,
     email: document.getElementById("inputemailSUP").value,
     id: document.getElementById("inputIDSUP").value,

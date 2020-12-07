@@ -7,11 +7,11 @@ import java.sql.SQLException;
 import org.eclipse.jetty.server.Authentication.Failed;
 
 public class Conexion {
-    private static String url = "jdbc:mysql://127.0.0.1:3306/emanoxxxdb?useSSL=false&serverTimezone=UTC&useLegacyDatetimeCode=false";
+    private static String url = "jdbc:mysql://emanoxxxdb.ckvheunuvy2u.us-east-2.rds.amazonaws.com:3306/emanoxxxdb?useSSL=false&serverTimezone=UTC&useLegacyDatetimeCode=false";
 
     private static String driverName = "com.mysql.cj.jdbc.Driver";
-    private static String username = "root";
-    private static String password = "Lux34";
+    private static String username = "admin";
+    private static String password = "espartan117";
     private static Connection conexion = null;
 
     public static Connection getConexion(){

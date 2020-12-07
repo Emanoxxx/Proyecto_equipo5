@@ -59,8 +59,8 @@ public class App
             String query = req.body();
             Usuarios usuario=gson.fromJson(query,Usuarios.class);
             String x=DAO.addUsuario(usuario.getName() ,usuario.getId(),usuario.getEmail(),usuario.getPass());;
-            System.out.println("Regresando "+usuario.getId());
-            return usuario.getId();
+            System.out.println(x+" "+usuario.getId());
+            return x;
         });
         post("/NCuentos",(req,res)->{
             try{
