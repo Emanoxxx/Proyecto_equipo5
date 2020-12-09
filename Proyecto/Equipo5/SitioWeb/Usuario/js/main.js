@@ -58,6 +58,11 @@ addCuento.addEventListener('click',function(){
     genero: document.getElementById('EleccionGenero').value
     })
     .then(function(response) {   
+        if("SI"==response.data){
+            alert("Cuento creado");
+        }else{
+            alert("Cuento no creado");
+        }
         
     })
     .catch(function(error) {
