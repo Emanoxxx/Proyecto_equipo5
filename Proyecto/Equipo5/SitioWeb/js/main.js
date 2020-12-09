@@ -50,6 +50,7 @@ bLogeo.addEventListener('click',function(){
             setCookie("Grant","Acceso",0);
             aUser.classList.remove("apagado");
         }else{
+            alert("Acceso denegado");
             setCookie("Grant","Denegado",0);
         delCookie("Usuario");
         delCookie("Pass");
@@ -78,8 +79,10 @@ bRegistro.addEventListener('click',function(){
     })
     .then(function(response) {
         if("Usuario Creado"==response.data){
+            alert("Usuario creado");
             document.getElementById('Usuario').innerHTML = getCookie("Usuario");
         }else{
+            alert("Usuario no creado");
             setCookie("Grant","Denegado",0);
             delCookie("Usuario");
             delCookie("Pass");
