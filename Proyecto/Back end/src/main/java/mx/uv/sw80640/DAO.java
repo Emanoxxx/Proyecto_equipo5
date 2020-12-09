@@ -104,6 +104,58 @@ public class DAO {
         }
         return x;
     }
+    //select * from Cuento order by vistas desc;
+    public static List<Cuento> getTop(){
+        String x="No creado";
+        java.sql.Statement stm = null;
+        Connection con=null;
+        ResultSet rs =null;
+        List<Cuento> cuentos = new ArrayList<Cuento>();
+        //Cuento c=new Cuento(nombre,user);
+        String contenido="No se encontro o hubo un error.";
+        con = conn.getConexion();
+        try {
+            String sql="select * from Cuento order by vistas desc";
+            stm=con.createStatement();
+            rs=stm.executeQuery(sql);
+           
+           int i=0;
+            while(rs.next() & i<5){
+                i++;
+                cuentos.add(new Cuento(rs.getString("nombre"),rs.getString("usuario")));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }finally{
+            if(rs!=null){
+                try {
+                    rs.close();
+                } catch (Exception e) {
+                    //TODO: handle exception
+                }
+                rs=null;
+            }
+            if(stm!=null){
+                try {
+                    stm.close();
+                } catch (Exception e) {
+                    //TODO: handle exception
+                }
+                stm=null;
+            }
+            if(con!=null){
+                try {
+                    con.close();
+                } catch (Exception e) {
+                    //TODO: handle exception
+                }
+                con=null;
+            }
+        }
+        
+        
+        return cuentos;
+    }
     //
     public static List<Cuento> getCuentos(String user){
         String x="No creado";

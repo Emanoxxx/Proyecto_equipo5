@@ -74,6 +74,14 @@ public class App
                 return e.getMessage();
             }
         });
+        post("/top5",(req,res)->{
+            try{
+            List<Cuento> cuentos =DAO.getTop();
+            return cuentos;
+            }catch(Exception e){
+                return e.getMessage();
+            }
+        });
         post("/AddCuento",(req,res)->{
             try{
             JsonParser parser = new JsonParser();
