@@ -33,8 +33,10 @@ public class App
 
     public static void main( String[] args )
     {   
-        port(2022);
+        port(getHerokuAssignedPort());
         get("/UserPage", (rq, rs) -> new ModelAndView(getCuentosUser(""+rq.queryParams("U")), "UserPage"), new JadeTemplateEngine());
+        get("/EditPage", (rq, rs) -> new ModelAndView(getCuentosUser(""+rq.queryParams("U")), "EditPage"), new JadeTemplateEngine());
+        get("/Search", (rq, rs) -> new ModelAndView(getCuentosSearch(""+rq.queryParams("S")), "Search"), new JadeTemplateEngine());
         get("/ReadPage", (rq, rs) -> new ModelAndView(getCuentoc(""+rq.queryParams("U"),""+rq.queryParams("N")), "ReadPage"), new JadeTemplateEngine());
         /*get("/UserPage",(request,response)->{
             String user= ""+request.queryParams("Nuser");
@@ -62,6 +64,14 @@ public class App
             System.out.println(x+" "+usuario.getId());
             return x;
         });
+        post("/top5",(req,res)->{
+            try{
+            String cuentos =DAO.getTop();
+            return cuentos;
+            }catch(Exception e){
+                return e.getMessage();
+            }
+        });
         post("/NCuentos",(req,res)->{
             try{
             JsonParser parser = new JsonParser();
@@ -70,14 +80,6 @@ public class App
             String u= ""+peticion.get("Username");
             System.out.println(u);
             return DAO.getNCuentos(u);
-            }catch(Exception e){
-                return e.getMessage();
-            }
-        });
-        post("/top5",(req,res)->{
-            try{
-            List<Cuento> cuentos =DAO.getTop();
-            return cuentos;
             }catch(Exception e){
                 return e.getMessage();
             }
@@ -93,6 +95,33 @@ public class App
             String g= ""+peticion.get("genero");
             System.out.println(u);
             return DAO.agregarCuento(n,u,c,g);
+            }catch(Exception e){
+                return e.getMessage();
+            }
+        });
+        post("/UpdCuento",(req,res)->{
+            try{
+            JsonParser parser = new JsonParser();
+            JsonElement arbol = parser.parse(req.body());
+            JsonObject peticion =arbol.getAsJsonObject();
+            String n= ""+peticion.get("nombre");
+            String u= ""+peticion.get("user");
+            String c= ""+peticion.get("contenido");
+            String g= ""+peticion.get("genero");
+            System.out.println(u);
+            return DAO.updateCuento(n,u,c,g);
+            }catch(Exception e){
+                return e.getMessage();
+            }
+        });
+        post("/delCuento",(req,res)->{
+            try{
+            JsonParser parser = new JsonParser();
+            JsonElement arbol = parser.parse(req.body());
+            JsonObject peticion =arbol.getAsJsonObject();
+            String n= ""+peticion.get("nombre");
+            String u= ""+peticion.get("user");
+            return DAO.delCuento(n,u);
             }catch(Exception e){
                 return e.getMessage();
             }
@@ -160,8 +189,54 @@ public class App
             }
               
         });
+        post("/getContenido", (req, res) ->{
+            try{
+            JsonParser parser = new JsonParser();
+            JsonElement arbol = parser.parse(req.body());
+            JsonObject peticion =arbol.getAsJsonObject();
+            String name= ""+peticion.get("nombre");
+            String user= ""+peticion.get("Usuario");
+            return getContenido(name, user);
+            }catch(Exception e){
+                   return e.getMessage();
+            }
+              
+        });
+        
+        post("/getGenero", (req, res) ->{
+            try{
+            JsonParser parser = new JsonParser();
+            JsonElement arbol = parser.parse(req.body());
+            JsonObject peticion =arbol.getAsJsonObject();
+            String name= ""+peticion.get("nombre");
+            String user= ""+peticion.get("Usuario");
+            return getGenero(name, user);
+            }catch(Exception e){
+                   return e.getMessage();
+            }
+              
+        });
         
         
+        
+}
+public static String getGenero(String nombre, String user){
+    String x="";
+    x=DAO.getGenero(nombre,user);
+    return x;
+}
+public static String getContenido(String nombre, String user){
+    String x="";
+    Cuento cuento =DAO.getCuentoContenido(nombre, user);
+    x=cuento.getContent();
+    return x;
+}
+static int getHerokuAssignedPort() {
+    ProcessBuilder processBuilder = new ProcessBuilder();
+    if (processBuilder.environment().get("PORT") != null) {
+        return Integer.parseInt(processBuilder.environment().get("PORT"));
+    }
+    return 4567; //return default port if heroku-port isn't set (i.e. on localhost)
 }
 public static boolean validar(String nombre, String pass){
     if(DAO.getvalidar(nombre, pass)){
@@ -187,6 +262,12 @@ public static Map<String, String> getCuentoc(String user,String nombre){
     map.put("Nombre", nombre);
     map.put("Usuario", user);
     map.put("Contenido",cuento.getContent());
+    return map;
+}
+public static Map<String, Object> getCuentosSearch(String busqueda){
+    Map<String, Object> map = new HashMap<>();
+    map.put("Nombre", ("Busqueda="+busqueda));
+    map.put("Cuentos",DAO.getCuentosSearch(busqueda));
     return map;
 }
 }
