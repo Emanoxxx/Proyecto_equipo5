@@ -3,7 +3,7 @@ Biblioteca virtual Equipo 5
 
 
 ## Servidor para acceder
-[Link del Servidor](pendiente) 
+[Link del Servidor](https://emanuel.d3msvwuf5241zy.amplifyapp.com/Proyecto/Equipo5/SitioWeb/index.html) 
 
 ## Funcionalidades a implementar
 - [] Registrar Usuario
