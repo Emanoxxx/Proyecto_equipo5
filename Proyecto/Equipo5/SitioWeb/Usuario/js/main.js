@@ -2,17 +2,28 @@
 var bLogeo = document.getElementById("logSI");
 var bRegistro = document.getElementById("regSU");
 var cuser =document.getElementById("cerrarU");
-var euser =document.getElementById("editar");
+var numeroCuentos =document.getElementById("NCuentos");
 ///
 /*
-<a class="apagado" id="cerrarU" href="#">Cerrar Sesion</a>
+<a class="apagado" id="cerrarU" href="#">Cerrar Sesion</a>paginavista
 <a class="apagado" id="editar" href="#">Editar perfil</a>
 */
+    var pvista =document.getElementById("paginavista");
     var blogin= document.getElementById('acceso');
     var breg= document.getElementById('registro');
     var aUser= document.getElementById('User');
     aUser.innerHTML=getCookie('Usuario');
     var n = getCookie('Usuario');
+    pvista.href="https://proyectobiblioteca16.herokuapp.com/UserPage?U="+getCookie('Usuario');
+    axios.post("https://proyectobiblioteca16.herokuapp.com/NCuentos",{
+    Username: getCookie('Usuario')
+    })
+    .then(function(response) {
+        numeroCuentos.innerHTML = response.data;
+    })
+    .catch(function(error) {
+        console.log(error)
+    }); 
     if(n!="" & getCookie("Grant")!="Denegado"){
         if(true){
             //console.log(aUser.innerHTML);
@@ -20,7 +31,6 @@ var euser =document.getElementById("editar");
             breg.classList.add("apagado");
             aUser.classList.remove("apagado");
             cuser.classList.remove("apagado");
-            euser.classList.remove("apagado");
             aUser.href=aUser.href + aUser.innerHTML;
         }
     
@@ -32,9 +42,34 @@ var euser =document.getElementById("editar");
         breg.classList.remove("apagado");
         aUser.classList.add("apagado");
         cuser.classList.add("apagado");
-        euser.classList.add("apagado");
+
 
     }
+//
+var CuentoNombre = document.getElementById('nombreCuento').value;
+var CuentoGenero = document.getElementById('EleccionGenero').value;
+var CuentoContenido = document.getElementById('contenidoCuento').value;
+var addCuento= document.getElementById('addCuento');
+addCuento.addEventListener('click',function(){
+    axios.post("https://proyectobiblioteca16.herokuapp.com/AddCuento",{
+    nombre : document.getElementById('nombreCuento').value, 
+    user: getCookie("Usuario"),
+    contenido: document.getElementById('contenidoCuento').value,
+    genero: document.getElementById('EleccionGenero').value
+    })
+    .then(function(response) {   
+        if("SI"==response.data){
+            alert("Cuento creado");
+        }else{
+            alert("Cuento no creado");
+        }
+        
+    })
+    .catch(function(error) {
+        console.log(error)
+    });  
+     
+    });
 //
 bLogeo.addEventListener('click',function(){
     setCookie("Usuario",document.getElementById("NusuarioSI").value ,0);
@@ -47,10 +82,13 @@ bLogeo.addEventListener('click',function(){
     })
     .then(function(response) {   
         if(response.data!=""){
+            blogin.classList.add("apagado");
+            breg.classList.add("apagado");
+            aUser.classList.remove("apagado");
+            cuser.classList.remove("apagado");
             setCookie("Grant","Acceso",0);
             aUser.classList.remove("apagado");
         }else{
-            alert("Acceso denegado");
             setCookie("Grant","Denegado",0);
         delCookie("Usuario");
         delCookie("Pass");
@@ -59,7 +97,7 @@ bLogeo.addEventListener('click',function(){
         breg.classList.remove("apagado");
         aUser.classList.add("apagado");
         cuser.classList.add("apagado");
-        euser.classList.add("apagado");
+
         }
     })
     .catch(function(error) {
@@ -68,6 +106,8 @@ bLogeo.addEventListener('click',function(){
      
     });
 //
+//
+
 bRegistro.addEventListener('click',function(){
     setCookie("Usuario",document.getElementById("inputIDSUP").value ,0);
     setCookie("Pass",document.getElementById("inputpassSUP").value ,0);
@@ -78,21 +118,7 @@ bRegistro.addEventListener('click',function(){
     pass: document.getElementById("inputpassSUP").value
     })
     .then(function(response) {
-        if("Usuario Creado"==response.data){
-            alert("Usuario creado");
-            document.getElementById('Usuario').innerHTML = getCookie("Usuario");
-        }else{
-            alert("Usuario no creado");
-            setCookie("Grant","Denegado",0);
-            delCookie("Usuario");
-            delCookie("Pass");
-            blogin.classList.remove("apagado");
-            breg.classList.remove("apagado");
-            aUser.classList.add("apagado");
-            cuser.classList.add("apagado");
-            euser.classList.add("apagado");
-        }
-        
+        document.getElementById(getCookie("Usuario")).innerHTML = response.data;
     })
     .catch(function(error) {
         console.log(error)
@@ -107,7 +133,6 @@ cuser.addEventListener('click',function(){
     breg.classList.remove("apagado");
     aUser.classList.add("apagado");
     cuser.classList.add("apagado");
-    euser.classList.add("apagado");
 });   
 function delCookie(nombre){
     valor="";
