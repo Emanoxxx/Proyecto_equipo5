@@ -162,4 +162,10 @@ function getCookie(nombre){
     }
     return  "";
 }
-    
+//
+var ButonSearch = document.getElementById("BSearch");
+var ibusqueda= document.getElementById("Busqueda")
+ButonSearch.addEventListener('click',function(){  
+    var busqueda= document.getElementById("Busqueda").value;
+    ButonSearch.href=("https://proyectobiblioteca16.herokuapp.com/Search?S="+busqueda);
+}); 
