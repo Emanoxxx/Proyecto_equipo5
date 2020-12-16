@@ -3,7 +3,7 @@ Biblioteca virtual Equipo 5
 
 
 ## Servidor para acceder
-[Link del Servidor](https://emanuel.d3msvwuf5241zy.amplifyapp.com/Proyecto/Equipo5/SitioWeb/index.html) 
+[Link del Servidor](https://main.d3msvwuf5241zy.amplifyapp.com/Proyecto/Front%20end/SitioWeb/index.html) 
 
 ## Funcionalidades a implementar
 - [x] Registrar Usuario
@@ -17,6 +17,6 @@ Biblioteca virtual Equipo 5
 
 ## Descripcion
 
-### Es una biblioteca virtual la cual consiste en una pagina que permite que cualquier usuario suba y vea sus propios cuentos
+### Es una biblioteca virtual la cual consiste en una pagina que permite que cualquier usuario suba y ver cuentos
 
 
