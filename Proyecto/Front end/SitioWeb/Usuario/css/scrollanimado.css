@@ -17,7 +17,7 @@
 .ventana{
     height: 100%;
     width: 100%;
-    background: url("/Proyecto/Equipo5/SitioWeb/assets/img/inicio-Home.jpg");
+    background: url("/Proyecto/Front end/SitioWeb/assets/img/inicio-Home.jpg");
 }
 .contenedor{
     display:flex;
