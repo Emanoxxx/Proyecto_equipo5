@@ -15,8 +15,8 @@ Biblioteca virtual Equipo 5
 - [x] Editar cuento
 
 
-## Diagrama de clases
+## Descripcion
 
-### PENDIENTE DIAGRAMA DE CLASES
+### Es una biblioteca virtual la cual consiste en una pagina que permite que cualquier usuario suba y vea sus propios cuentos
 
 
