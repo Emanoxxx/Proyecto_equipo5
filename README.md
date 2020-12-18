@@ -17,6 +17,6 @@ Biblioteca virtual Equipo 5
 
 ## Descripcion
 
-### Es una biblioteca virtual la cual consiste en una pagina que permite que cualquier usuario suba y ver cuentos
+### Es una biblioteca virtual la cual consiste en una pagina que permite que cualquier usuario suba y ver cuentos, los archivos html se encuentran en Proyecto/back end
 
 
