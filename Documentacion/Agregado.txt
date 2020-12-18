@@ -1,0 +1,3 @@
+El proyecto se divide en 2, la carpeta back end que contiene las aplicaciones de java,
+los accesos a base de datos y los JADE, y la carpeta front end la cual contiene los 
+archivos html y sus recursos.
